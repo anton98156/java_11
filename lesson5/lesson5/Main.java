@@ -8,20 +8,22 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Введите команду для создания карты:");
-        RobotMap map = null;
-        RobotMap map_2 = GamePlay.mapCreation(map);
-
+        RobotMap map = GamePlay.mapCreation();
         System.out.println("ИГРАЕМ...");
 
-        System.out.println("Введите команду:");
-        RobotMap.Robot robot = GamePlay.robotCreation(map_2);
+        System.out.println("Введите команду для создания первого робота:");
+        RobotMap.Robot robot = GamePlay.robotCreation(map);
+        System.out.println("Введите команду для создания второго робота:");
+        RobotMap.Robot robot_2 = GamePlay.robotCreation(map);
 
-        System.out.println("Введите команду:");
-        RobotMap.Robot robot_2 = GamePlay.robotCreation(map_2);
-        
-        System.out.println("Положения роботов: ");
-        System.out.println(robot);
-        System.out.println(robot_2);
+        int count = 0;
+        while (count < 10) {
+            // GamePlay.play(map);
+            System.out.println("Положения роботов: ");
+            System.out.println(robot);
+            System.out.println(robot_2);
+            count++;
+        }
 
         // if (robot_2 != null) {
         //     try {
@@ -30,10 +32,6 @@ public class Main {
         //         System.out.println("Не удалось переместить робота: " + e.getMessage());
         //     }
         // }
-
-        // System.out.println("Положения роботов: ");
-        // System.out.println(robot);
-        // System.out.println(robot_2);
 
         sc.close();
     }

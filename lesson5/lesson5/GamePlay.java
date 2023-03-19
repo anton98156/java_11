@@ -7,8 +7,9 @@ import lesson5.RobotMap.Robot;
 
 public class GamePlay {
 
-    public static RobotMap mapCreation(RobotMap map) {
+    public static RobotMap mapCreation() {
         Scanner sc = new Scanner(System.in);
+        RobotMap map = null;
         while (true) {
             String command = sc.nextLine();
             if (command.startsWith("create-map")) {
