@@ -53,7 +53,7 @@ public class RobotMap {
 
     public class Robot {
 
-        private final UUID id;
+        protected UUID id;
         private Point position;
         private Direction direction;
 
@@ -89,7 +89,7 @@ public class RobotMap {
 
         @Override
         public String toString() {
-            return String.format("[%s] %s", id.toString(), position.toString());
+            return String.format("[%s] %s", id, position.toString());
         }
     }
 
