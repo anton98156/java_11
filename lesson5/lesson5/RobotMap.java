@@ -6,18 +6,18 @@ import java.util.UUID;
 
 public class RobotMap {
 
-    private final int n;
-    private final int m;
+    protected final int n;
+    protected final int m;
 
-    private final Map<UUID, Robot> robots;
+    public static Map<UUID, Robot> robots;
 
     public RobotMap(int n, int m) {
         if (n < 0 || m < 0) {
-            throw new IllegalArgumentException("Недопустимые значения размера карты!");
+            throw new IllegalArgumentException("\nНедопустимые значения размера карты!");
         }
         this.n = n;
         this.m = m;
-        this.robots = new HashMap<>();
+        RobotMap.robots = new HashMap<>();
     }
 
     public Robot createRobot(Point position) throws PositionException {
@@ -30,32 +30,24 @@ public class RobotMap {
 
     private void checkPosition(Point position) throws PositionException {
         if (position.getX() < 0 || position.getY() < 0 || position.getX() > n || position.getY() > m) {
-            throw new PositionException("Некорректное значение точки: " + position);
+            throw new PositionException("\nНекорректное значение точки: " + position);
         }
         if (!isFree(position)) {
-            throw new PositionException("Точка " + position + " занята!");
+            throw new PositionException("\nТочка " + position + " занята!");
         }
     }
 
     private boolean isFree(Point position) {
-        return robots.values().stream()  // Robot
-//                .map(robot -> robot.getPosition())
-                .map(Robot::getPosition) // Point
+        return robots.values().stream()
+                .map(Robot::getPosition)
                 .noneMatch(position::equals);
-
-//        for (Robot value : robots.values()) {
-//            if (value.getPosition().equals(position)) {
-//                return false;
-//            }
-//        }
-//        return true;
     }
 
     public class Robot {
 
         protected UUID id;
-        private Point position;
-        private Direction direction;
+        protected Point position;
+        protected Direction direction;
 
         public Robot(Point position) {
             this.id = UUID.randomUUID();
@@ -71,7 +63,7 @@ public class RobotMap {
             return position;
         }
 
-        public void move() throws PositionException {
+        public void move(Direction direction) throws PositionException {
             Point newPosition = switch (direction) {
                 case TOP -> new Point(position.getX() - 1, position.getY());
                 case RIGHT -> new Point(position.getX(), position.getY() + 1);
@@ -79,7 +71,6 @@ public class RobotMap {
                 case LEFT -> new Point(position.getX(), position.getY() - 1);
             };
             checkPosition(newPosition);
-
             position = newPosition;
         }
 
@@ -89,7 +80,7 @@ public class RobotMap {
 
         @Override
         public String toString() {
-            return String.format("[%s] %s", id, position.toString());
+            return String.format("[%s] %s\n", id, position.toString());
         }
     }
 
