@@ -55,15 +55,11 @@ public class RobotMap {
             this.direction = Direction.TOP;
         }
 
-        public UUID getId() {
-            return id;
-        }
-
         public Point getPosition() {
             return position;
         }
 
-        public void move(Direction direction) throws PositionException {
+        public void move() throws PositionException {
             Point newPosition = switch (direction) {
                 case TOP -> new Point(position.getX() - 1, position.getY());
                 case RIGHT -> new Point(position.getX(), position.getY() + 1);
@@ -90,4 +86,7 @@ public class RobotMap {
 
     }
 
+    public Robot getRobotById(UUID id) {
+        return robots.get(id);
+    }
 }

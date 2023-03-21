@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.UUID;
 
-import lesson5.RobotMap.Direction;
-
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
@@ -51,10 +49,12 @@ public class Main {
             } else if (command.startsWith("move-robot")) {
                 String[] split = command.split(" ");
                 String[] arguments = Arrays.copyOfRange(split, 1, split.length); 
-                String key = arguments[1];
-                UUID uid = UUID.fromString(key);
+
+                UUID id = UUID.fromString(arguments[0]);
+
                 try {
-                    RobotMap.robots.get(uid).move(Direction.LEFT);
+                    RobotMap.Robot robotById = map.getRobotById(id);
+                    robotById.move();
                 } catch (PositionException e) {
                     System.out.println("\nНе удалось переместить робота: " + e.getMessage());
                 }
