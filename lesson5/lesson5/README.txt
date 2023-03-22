@@ -16,5 +16,5 @@ create-robot x y
 move-robot id
 change-direction id direction
 
-*directions: TOP, RIGHT, BOTTOM, LEFT
+* directions: TOP, RIGHT, BOTTOM, LEFT
 * добавлено 10 ходов по умолчанию
