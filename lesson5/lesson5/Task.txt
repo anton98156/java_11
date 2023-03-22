@@ -14,6 +14,6 @@
 create-map x y (доступна только в начале)
 create-robot x y
 move-robot id
-change-direction id LEFT
+change-direction id direction
 
-*добавлено 10 ходов по умолчанию
+*directions: TOP, RIGHT, BOTTOM, LEFT

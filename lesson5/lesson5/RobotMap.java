@@ -6,8 +6,8 @@ import java.util.UUID;
 
 public class RobotMap {
 
-    protected final int n;
-    protected final int m;
+    private final int n;
+    private final int m;
 
     public static Map<UUID, Robot> robots;
 
@@ -45,9 +45,9 @@ public class RobotMap {
 
     public class Robot {
 
-        protected UUID id;
-        protected Point position;
-        protected Direction direction;
+        private UUID id;
+        private Point position;
+        private Direction direction;
 
         public Robot(Point position) {
             this.id = UUID.randomUUID();
@@ -88,5 +88,14 @@ public class RobotMap {
 
     public Robot getRobotById(UUID id) {
         return robots.get(id);
+    }
+
+    public static void changeDirection(RobotMap map, UUID id, Direction direction) {
+        RobotMap.Robot robotById = map.getRobotById(id);
+        if (robotById != null) {
+            robotById.changeDirection(direction);
+        } else {
+            System.out.println("Робот с идентификатором " + id + " не найден");
+        }
     }
 }

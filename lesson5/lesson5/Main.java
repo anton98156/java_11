@@ -58,6 +58,15 @@ public class Main {
                 } catch (PositionException e) {
                     System.out.println("\nНе удалось переместить робота: " + e.getMessage());
                 }
+            } else if (command.startsWith("change-direction")) {
+                String[] split = command.split(" ");
+                String[] arguments = Arrays.copyOfRange(split, 1, split.length); 
+
+                UUID id = UUID.fromString(arguments[0]);
+                RobotMap.Direction direction = RobotMap.Direction.valueOf(arguments[1]);
+
+                // RobotMap.Robot robotById = map.getRobotById(id);
+                RobotMap.changeDirection(map, id, direction);
             } else {
                 System.out.println("\nКоманда не найдена. Попробуйте еще раз");
             }
